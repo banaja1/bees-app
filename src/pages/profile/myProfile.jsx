@@ -105,45 +105,12 @@ export function MyProfile() {
             <ProfileInfoCard
               title="Profile Information"
               name = {userDetails.name}
-              mobile = {userDetails.mobile}
+              mobile = {userDetails.phone}
               email = {userDetails.email}
             />
           </div>
           <div className="gird-cols-1 mb-12 grid gap-12 px-4 lg:grid-cols-1 xl:grid-cols-1">
             <hr></hr>
-          </div>
-          <div className="px-4 pb-4">
-            <div className="flex flex-wrap">
-              <div className="flex-auto">
-                <Typography variant="h6" color="blue-gray" className="mb-2">
-              OpenAI Key
-            </Typography>
-              </div>
-              <div>
-                {/* {!showButton1 &&<Tooltip content="Edit Key">
-                  <PencilIcon className="h-4 w-4 cursor-pointer text-blue-gray-500" onClick={toggleButtonEdit1}/>
-                </Tooltip>} */}
-              </div>
-            </div>
-            <Typography
-              variant="small"
-              className="font-normal text-blue-gray-500">
-              <input 
-              type="text" 
-              name = {openAIKey} 
-              aria-describedby="helper-text-explanation" 
-              className="border-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-              defaultValue={openAIKey}
-              onChange={(e) => setOpenAIKey(e.target.value)}
-              readOnly={!showButton1}
-              />   
-            </Typography>
-             {showButton1 &&
-            <div className="gird-cols-1 grid gap-12 px-1 lg:grid-cols-6 xl:grid-cols-6">
-              <button onClick={onSave} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Save</button>
-              <button type="button" className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              onClick={handleClick} >Cancel</button>
-            </div>}
           </div>
           <div className="px-4 pb-4">
             <div className="flex flex-wrap">

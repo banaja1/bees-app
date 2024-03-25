@@ -13,7 +13,7 @@ import { Story } from "@/pages/story";
 import { Timeline } from "@/pages/timeline";
 import { MyProfile } from "@/pages/profile";
 import { SignOut } from "@/pages/auth";
-import { Crm } from "./pages/crm";
+import { Contact, Ticket } from "./pages/crm";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -94,13 +94,13 @@ export const sidebarMenu = [
         icon: <UserCircleIcon {...icon} />,
         name: "Contacts",
         path: "/contacts",
-        element: <Crm />,
+        element: <Contact />,
       },
       {
         icon: <UserCircleIcon {...icon} />,
         name: "Ticket",
-        path: "/attendance",
-        element: <Attendance />,
+        path: "/tickets",
+        element: <Ticket />,
       },
     ],
   },

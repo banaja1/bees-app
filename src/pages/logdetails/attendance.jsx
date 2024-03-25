@@ -20,17 +20,15 @@ import { log_services } from "@/services/logServices";
 import React from "react";
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 import {DialogContent } from '@mui/material';
+import { organization_services } from "@/services/organizationServices";
 
 export function Attendance() {
   var page_number = 1
 
-  const [totalPage, setTotalPage] = useState(1)
-  const [requestHistoryData, setRequestHistoryData] = useState([])
   const [empListData, setEmpListData] = useState([])
   const [empAtdData, setEmpAtdData] = useState([])
   const [active, setActive] = React.useState(1);
   const [open, setOpen] = React.useState(false);
-  const [queryResponse, setQueryResponse] = React.useState('');
   const [end_date, setEndDate] = React.useState('');
   const [start_date, setStartDate] = React.useState('');
   const [userIdData, setUserIdData] = React.useState('');
@@ -68,9 +66,8 @@ export function Attendance() {
   }
   const handleOpen = (userId) => {
     setUserIdData(userId)
-    var companyId = localStorage.getItem("company_id")
     log_services
-      .getEmpAtd(companyId, start_date, end_date, userId)
+      .getEmpAtd(start_date, end_date, userId)
         .then(response => {
           setEmpAtdData(response.data.employee[0].attendance)
         })
@@ -84,21 +81,6 @@ export function Attendance() {
     setOpen(!open);
   }
  
-  const next = () => {
-    console.log(active)
-    console.log(totalPage)
-    if (active === totalPage) return;
-    page_number = active+1 
-    fetchData()
-    setActive(active + 1);
-  };
- 
-  const prev = () => {
-    if (active === 1) return;
-    page_number = active - 1
-    fetchData()
-    setActive(active - 1);
-  };
 
   const fetchData = () => {
   const currentDate = new Date();
@@ -110,18 +92,15 @@ export function Attendance() {
   currentDate.setDate(1);
   const firstDateOfLastMonth = currentDate;
   setStartDate(firstDateOfLastMonth.toISOString().split('T')[0])
-    var companyId = localStorage.getItem("company_id")
-      log_services
-        .getEmpList(companyId)
-          .then(response => {
-            var empList = response.data[0].employee
-            setEmpListData(empList)
-
-          })
-          .catch(error => {
-            console.log(error)
-          })
-    }
+  organization_services
+    .getEmployeeList()
+    .then(response => {
+      setEmpListData(response.data.employees)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
 
   useEffect(() => {
     fetchData();
@@ -140,7 +119,7 @@ export function Attendance() {
           <table className="w-full min-w-[640px] table-auto">
             <thead>
               <tr>
-                {["UserId", "Name" ,"Email", "Mobile", "Status", "Role",""].map((el) => (
+                {["UserId", "Name" ,"Email", "Status", "Role",""].map((el) => (
                   <th
                     key={el}
                     className="border-b border-blue-gray-50 py-3 px-5 text-left"
@@ -157,7 +136,7 @@ export function Attendance() {
             </thead>
             <tbody>
               {empListData.map(
-                ({ _id, name, email,mobile, status, role}, key) => {
+                ({ userId, name, email, status, role}, key) => {
                   const className = `py-3 px-5 ${
                     key === empListData.length - 1
                       ? ""
@@ -170,7 +149,7 @@ export function Attendance() {
                         <div className="flex items-center gap-4">
                           <div>
                             <Typography className="text-xs font-normal text-blue-gray-500">
-                              {_id}
+                              {userId}
                             </Typography>
                           </div>
                         </div>
@@ -187,11 +166,6 @@ export function Attendance() {
                       </td>
                       <td className={className}>
                         <Typography className="text-xs font-normal text-blue-gray-500">
-                          {mobile}
-                        </Typography>
-                      </td>
-                      <td className={className}>
-                        <Typography className="text-xs font-normal text-blue-gray-500">
                           {status}
                         </Typography>
                       </td>
@@ -202,7 +176,7 @@ export function Attendance() {
                       </td>
                       <td className={className}>
                         <Typography className="text-xs font-normal text-blue-gray-500">
-                          <Button onClick={()=>handleOpen(_id)} variant="gradient">View</Button>
+                          <Button onClick={()=>handleOpen(userId)} variant="gradient">View</Button>
                         </Typography>
                       </td>
                     </tr>
@@ -212,30 +186,6 @@ export function Attendance() {
             </tbody>
           </table>  
         </CardBody>
-            <div className="flex items-center gap-4">
-      <Button
-        variant="text"
-        className="flex items-center gap-2"
-        onClick={prev}
-        disabled={active === 1}
-      >
-        <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" /> Previous
-      </Button>
-      {/* <div className="flex items-center gap-2">
-      {buttons.map(button => (
-          <span>{button}</span>
-        ))}
-      </div> */}
-      <Button
-        variant="text"
-        className="flex items-center gap-2"
-        onClick={next}
-        disabled={active === totalPage}
-      >
-        Next
-        <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
-      </Button>
-    </div>
       </Card>
          
       <Dialog open={open} handler={handleOpen} maxWidth="sm" fullWidth>

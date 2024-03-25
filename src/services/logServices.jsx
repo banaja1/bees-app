@@ -12,7 +12,7 @@ const getEmpList = (companyId) => {
 
 const getEmpAtd = (companyId, start_date, end_date, userId) => {
   return axios({
-    url: log.GET_EMP_ATD+companyId+'&start_date='+start_date+'&end_date='+end_date+'&userId='+userId,
+    url: log.GET_EMP_ATD+'&start_date='+start_date+'&end_date='+end_date+'&userId='+userId,
     method: "get",
     headers: header
   });

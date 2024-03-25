@@ -4,6 +4,7 @@ export * from "@/widgets/cards/message-card";
 export * from "@/widgets/cards/story-detail-card";
 export * from "@/widgets/cards/timeline-entry-card";
 export * from "@/widgets/cards/contact-entry-card";
+export * from "@/widgets/cards/ticket-entry-card";
 export * from "@/widgets/cards/timeline-details-card";
 export * from "@/widgets/cards/table-test";
 export * from "@/widgets/cards/create-story-card";

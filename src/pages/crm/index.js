@@ -1,2 +1,3 @@
-export * from "@/pages/crm/crm";
+export * from "@/pages/crm/contact";
+export * from "@/pages/crm/ticket";
 

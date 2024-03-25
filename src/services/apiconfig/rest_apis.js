@@ -5,7 +5,7 @@ const PROD_URL = "http://13.234.252.174:3000";
 
 const DEV_URL2 = "http://192.168.29.214:3031";
 const PROD_URL2 = "http://13.234.252.174:3030";
-const DEVELOPMENT2 = true;
+const DEVELOPMENT2 = false;
 
 const HOSTNAME2 = DEVELOPMENT2 ? DEV_URL2: PROD_URL2;
 
@@ -21,6 +21,9 @@ export const microServiceDevUrls = {
 
   // CRM MICROSERVICE
   CRM_URL: "http://localhost:3003",
+
+  // ATD MICROSERVICE
+  ATD_URL: "http://localhost:3004",
 }
 
 export const microServiceProdUrls = {
@@ -35,6 +38,9 @@ export const microServiceProdUrls = {
 
   // CRM MICROSERVICE
   CRM_URL: "http://13.234.252.174:3003",
+
+    // ATD MICROSERVICE
+  ATD_URL: "http://13.234.252.174:3004",
 }
 const DEVELOPMENT = true;
 
@@ -50,7 +56,7 @@ const ISSUE_TOEKN_WITH_COMPANY = HOSTNAME.TIS_URL+"/jwttoken/login-with-organiza
 
 // USER MODULE
 const GET_USER_BY_EMAIL_PWD = HOSTNAME.US_URL+"/users/find-user-by-email-pwd";
-const GET_PROFILE = HOSTNAME + "/get_profile";
+const GET_PROFILE = HOSTNAME.US_URL + "/users/get-my-profile";
 const UPDATE_OPENAI_KEY = HOSTNAME + "/openai_key";
 
 // ORGANIZATION MODULE
@@ -58,7 +64,6 @@ const GET_EMPLOYEE_LIST = HOSTNAME.ORG_URL+"/organizations/get-employee-list";
 
 // GET EMP LIST
 const GET_EMP_LIST = HOSTNAME + "/company/"
-const GET_EMP_ATD = HOSTNAME + "/company/attendance?companyId="
 
 // STORY MODULE
 const GET_STORY = HOSTNAME2 + "/story";
@@ -75,6 +80,9 @@ const GET_USER_LIST = HOSTNAME2 + "/workspace/get-user?workspaceId=";
 // CRM MODULE
 const ADD_CONTACT = HOSTNAME.CRM_URL + "/contacts";
 const GET_CONTACT_BY_USER = HOSTNAME.CRM_URL + "/contacts/get-contact-by-userid?id=";
+
+// CRM MODULE
+const GET_EMP_ATD = HOSTNAME.ATD_URL + "/attendance/get-employee-attendance?"
 
 export const access = {
   LOGIN_URL,
