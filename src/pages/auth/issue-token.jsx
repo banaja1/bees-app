@@ -31,7 +31,7 @@ export function IssueToken() {
   
     const fetchData = async () => {
         let user_details = JSON.parse(localStorage.getItem('user_details'))
-        setOrganizationList(user_details.organization)
+        setOrganizationList(user_details.organizations)
     }
 
     const handleSkip = async () => {

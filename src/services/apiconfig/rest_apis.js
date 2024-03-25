@@ -1,14 +1,4 @@
 
-const DEV_URL = "http://localhost:3000";
-const PROD_URL = "http://13.234.252.174:3000";
-
-
-const DEV_URL2 = "http://192.168.29.214:3031";
-const PROD_URL2 = "http://13.234.252.174:3030";
-const DEVELOPMENT2 = false;
-
-const HOSTNAME2 = DEVELOPMENT2 ? DEV_URL2: PROD_URL2;
-
 export const microServiceDevUrls = {
   // US MICROSERVICE
   US_URL: "http://localhost:3000",
@@ -42,7 +32,7 @@ export const microServiceProdUrls = {
     // ATD MICROSERVICE
   ATD_URL: "http://13.234.252.174:3004",
 }
-const DEVELOPMENT = true;
+const DEVELOPMENT = false;
 
 const HOSTNAME = DEVELOPMENT ? microServiceDevUrls: microServiceProdUrls;
 
@@ -66,16 +56,16 @@ const GET_EMPLOYEE_LIST = HOSTNAME.ORG_URL+"/organizations/get-employee-list";
 const GET_EMP_LIST = HOSTNAME + "/company/"
 
 // STORY MODULE
-const GET_STORY = HOSTNAME2 + "/story";
+const GET_STORY = HOSTNAME + "/story";
 
 // EPIC MODULE
-const GET_EPIC = HOSTNAME2 + "/epic/record";
+const GET_EPIC = HOSTNAME + "/epic/record";
 
 // TIMELINE MODULE
-const GET_TIMELINE = HOSTNAME2 + "/timeline";
+const GET_TIMELINE = HOSTNAME + "/timeline";
 
 // WORKSPACE MODULE
-const GET_USER_LIST = HOSTNAME2 + "/workspace/get-user?workspaceId=";
+const GET_USER_LIST = HOSTNAME + "/workspace/get-user?workspaceId=";
 
 // CRM MODULE
 const ADD_CONTACT = HOSTNAME.CRM_URL + "/contacts";
