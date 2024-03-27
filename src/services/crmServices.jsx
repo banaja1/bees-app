@@ -20,7 +20,25 @@ const getContactByUser = (userId) => {
   });
 };
 
+const getContactByOrganization = () => {
+  return axios({
+    url: crm.GET_CONTACT_BY_ORGANIZATION,
+    method: "get",
+    headers: header
+  });
+};
+
+const searchContactInOrganization = (query) => {
+  return axios({
+    url: crm.SEARCH_CONTACT_IN_ORGANIZATION+query,
+    method: "get",
+    headers: header
+  });
+};
+
 export const crm_services = {
   addContact,
-  getContactByUser
+  getContactByUser,
+  getContactByOrganization,
+  searchContactInOrganization
 };

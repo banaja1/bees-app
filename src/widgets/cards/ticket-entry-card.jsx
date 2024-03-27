@@ -1,5 +1,6 @@
 import { crm_services } from '@/services/crmServices';
 import React, { useState, useEffect } from 'react';
+import { SearchDropdown } from "@/widgets/cards";
 
 
 export function TicketEntry() {
@@ -39,6 +40,16 @@ export function TicketEntry() {
       {value: "bug", name:"BUG"}
     ]
     setTicketTypeList(tt)
+
+    crm_services.getContactByOrganization()
+      .then(response => {
+        // console.log(response.data)
+        setContactList(response.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
   }
 
   const handleSubmit = () => {
@@ -65,7 +76,11 @@ export function TicketEntry() {
       });
     // Reset error state
     setError('');
-  };
+  }
+
+  const onContactChange = (contactValue) => {
+    setContactValue(contactValue.target.value)
+  }
 
   return (
       <div className="space-y-12">
@@ -74,18 +89,7 @@ export function TicketEntry() {
               <div className="sm:col-span-2 sm:col-start-1">
                 <label className="mb-2">
                 Contacts:
-                <select
-                  className="w-full p-2 border rounded"
-                  value={contactValue}
-                  onChange={onEmpChange}
-                >
-                <option value="">Select User</option>
-                  {List.map((emp) => (
-                <option key={emp.userId} value={emp.userId}>
-                  {emp.name}
-                </option>
-              ))}
-                </select>
+                <SearchDropdown/>
               </label>
             </div>
 

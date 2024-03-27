@@ -32,7 +32,7 @@ export const microServiceProdUrls = {
     // ATD MICROSERVICE
   ATD_URL: "http://13.234.252.174:3004",
 }
-const DEVELOPMENT = false;
+const DEVELOPMENT = true;
 
 const HOSTNAME = DEVELOPMENT ? microServiceDevUrls: microServiceProdUrls;
 
@@ -70,8 +70,10 @@ const GET_USER_LIST = HOSTNAME + "/workspace/get-user?workspaceId=";
 // CRM MODULE
 const ADD_CONTACT = HOSTNAME.CRM_URL + "/contacts";
 const GET_CONTACT_BY_USER = HOSTNAME.CRM_URL + "/contacts/get-contact-by-userid?id=";
+const GET_CONTACT_BY_ORGANIZATION = HOSTNAME.CRM_URL + "/contacts/get-contact-by-organization";
+const SEARCH_CONTACT_IN_ORGANIZATION = HOSTNAME.CRM_URL + "/contacts/search-contact?query=";
 
-// CRM MODULE
+// ATD MODULE
 const GET_EMP_ATD = HOSTNAME.ATD_URL + "/attendance/get-employee-attendance?"
 
 export const access = {
@@ -117,5 +119,7 @@ export const workspace = {
 
 export const crm = {
   ADD_CONTACT,
-  GET_CONTACT_BY_USER
+  GET_CONTACT_BY_USER,
+  GET_CONTACT_BY_ORGANIZATION,
+  SEARCH_CONTACT_IN_ORGANIZATION
 };
