@@ -36,9 +36,20 @@ const searchContactInOrganization = (query) => {
   });
 };
 
+const addTicket = (data) => {
+  console.log(header)
+  return axios({
+    url: crm.ADD_TICKET,
+    method: "post",
+    headers: header, 
+    data: data
+  });
+};
+
 export const crm_services = {
   addContact,
   getContactByUser,
   getContactByOrganization,
-  searchContactInOrganization
+  searchContactInOrganization,
+  addTicket
 };
