@@ -46,10 +46,36 @@ const addTicket = (data) => {
   });
 };
 
+const getTicket = (data) => {
+  console.log(header)
+  return axios({
+    url: crm.ADD_TICKET,
+    method: "get",
+    headers: header, 
+    data: data
+  });
+};
+
+// const addDiary = (data) => {
+//   console.log(header)
+//   return axios({
+//     url: crm.ADD_DIARY,
+//     method: "post",
+//     headers: header, 
+//     data: data
+//   });
+// };
+
+const addDiary = (ticketId, data) => {
+  return axios.post(`${rest_apis.crm.ADD_DIARY}/${ticketId}/diary`, data);
+}
+
 export const crm_services = {
   addContact,
   getContactByUser,
   getContactByOrganization,
   searchContactInOrganization,
-  addTicket
+  addTicket,
+  getTicket,
+  addDiary
 };
