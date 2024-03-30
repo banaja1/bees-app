@@ -73,7 +73,7 @@ const GET_CONTACT_BY_USER = HOSTNAME.CRM_URL + "/contacts/get-contact-by-userid?
 const GET_CONTACT_BY_ORGANIZATION = HOSTNAME.CRM_URL + "/contacts/get-contact-by-organization";
 const SEARCH_CONTACT_IN_ORGANIZATION = HOSTNAME.CRM_URL + "/contacts/search-contact?query=";
 const ADD_TICKET = HOSTNAME.CRM_URL + "/tickets";
-const ADD_DIARY = HOSTNAME.CRM_URL + "/tickets/:ticketId/diary";
+const ADD_DIARY = HOSTNAME.CRM_URL + "/tickets";
 
 // ATD MODULE
 const GET_EMP_ATD = HOSTNAME.ATD_URL + "/attendance/get-employee-attendance?"

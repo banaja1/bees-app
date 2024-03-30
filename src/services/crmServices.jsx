@@ -66,8 +66,8 @@ const getTicket = (data) => {
 //   });
 // };
 
-const addDiary = (ticketId, data) => {
-  return axios.post(`${rest_apis.crm.ADD_DIARY}/${ticketId}/diary`, data);
+const addDiary = (data) => {
+  return axios.post(crm.ADD_DIARY+"/"+data.ticketId+"/diary", data);
 }
 
 export const crm_services = {

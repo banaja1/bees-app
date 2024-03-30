@@ -502,6 +502,9 @@ export function DiaryEntry() {
     crm_services.getTicket()
       .then(response => {
         setTicketList(response.data);
+        console.log("response.data")
+        console.log(response.data)
+        console.log("response.data1")
       })
       .catch(error => {
         console.log(error);
@@ -593,7 +596,7 @@ export function DiaryEntry() {
             >
               <option value="">Select Ticket</option>
               {Array.isArray(ticketList) && ticketList.map((ticket) => (
-                <option key={ticket.ticketId} value={ticket.ticketId}>
+                <option key={ticket._id} value={ticket._id}>
                   {ticket.ticketName}
                 </option>
               ))}
