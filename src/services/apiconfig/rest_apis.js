@@ -3,22 +3,23 @@ const DEVELOPMENT = false;
 
 export const microServiceDevUrls = {
   // US MICROSERVICE
-  US_URL: "http://localhost:3000",
+  US_URL: "http://192.168.29.178:3000",
 
   // TIS MICROSERVICE
-  TIS_URL: "http://localhost:3001",
+  TIS_URL: "http://192.168.29.178:3001",
 
   // ORG MICROSERVICE
-  ORG_URL: "http://localhost:3002",
+  ORG_URL: "http://192.168.29.178:3002",
 
   // CRM MICROSERVICE
-  CRM_URL: "http://localhost:3003",
+  // CRM_URL: "http://192.168.29.178:3003",
+  CRM_URL: "http://13.234.252.174:3003",
 
   // ATD MICROSERVICE
-  ATD_URL: "http://localhost:3004",
+  ATD_URL: "http://192.168.29.178:3004",
 
   // PM MICROSERVICE
-  PM_URL: "http://localhost:3005",
+  PM_URL: "http://192.168.29.178:3005",
 }
 
 export const microServiceProdUrls = {
@@ -77,6 +78,7 @@ const GET_USER_LIST = HOSTNAME + "/workspace/get-user?workspaceId=";
 // CRM MODULE
 const ADD_CONTACT = HOSTNAME.CRM_URL + "/contacts";
 const GET_CONTACT_BY_USER = HOSTNAME.CRM_URL + "/contacts/get-contact-by-userid?id=";
+const GET_TICKET_BY_USER = HOSTNAME.CRM_URL + "/tickets/user?ownerId=";
 const GET_CONTACT_BY_ORGANIZATION = HOSTNAME.CRM_URL + "/contacts/get-contact-by-organization";
 const SEARCH_CONTACT_IN_ORGANIZATION = HOSTNAME.CRM_URL + "/contacts/search-contact?query=";
 const ADD_TICKET = HOSTNAME.CRM_URL + "/tickets";
@@ -132,5 +134,6 @@ export const crm = {
   GET_CONTACT_BY_ORGANIZATION,
   SEARCH_CONTACT_IN_ORGANIZATION,
   ADD_TICKET,
-  ADD_DIARY
+  ADD_DIARY,
+  GET_TICKET_BY_USER
 };

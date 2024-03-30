@@ -20,6 +20,15 @@ const getContactByUser = (userId) => {
   });
 };
 
+const getTicketByUser = (ownerId) => {
+  console.log(crm.GET_TICKET_BY_USER+ownerId)
+  return axios({
+    url: crm.GET_TICKET_BY_USER+ownerId,
+    method: "get",
+    headers: header
+  });
+};
+
 const getContactByOrganization = () => {
   return axios({
     url: crm.GET_CONTACT_BY_ORGANIZATION,
@@ -77,5 +86,6 @@ export const crm_services = {
   searchContactInOrganization,
   addTicket,
   getTicket,
-  addDiary
+  addDiary,
+  getTicketByUser
 };
