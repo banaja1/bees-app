@@ -36,9 +36,46 @@ const searchContactInOrganization = (query) => {
   });
 };
 
+const addTicket = (data) => {
+  console.log(header)
+  return axios({
+    url: crm.ADD_TICKET,
+    method: "post",
+    headers: header, 
+    data: data
+  });
+};
+
+const getTicket = (data) => {
+  console.log(header)
+  return axios({
+    url: crm.ADD_TICKET,
+    method: "get",
+    headers: header, 
+    data: data
+  });
+};
+
+// const addDiary = (data) => {
+//   console.log(header)
+//   return axios({
+//     url: crm.ADD_DIARY,
+//     method: "post",
+//     headers: header, 
+//     data: data
+//   });
+// };
+
+const addDiary = (data) => {
+  return axios.post(crm.ADD_DIARY+"/"+data.ticketId+"/diary", data);
+}
+
 export const crm_services = {
   addContact,
   getContactByUser,
   getContactByOrganization,
-  searchContactInOrganization
+  searchContactInOrganization,
+  addTicket,
+  getTicket,
+  addDiary
 };

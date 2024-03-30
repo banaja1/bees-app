@@ -1,5 +1,5 @@
 
-const DEVELOPMENT = true;
+const DEVELOPMENT = false;
 
 export const microServiceDevUrls = {
   // US MICROSERVICE
@@ -79,6 +79,8 @@ const ADD_CONTACT = HOSTNAME.CRM_URL + "/contacts";
 const GET_CONTACT_BY_USER = HOSTNAME.CRM_URL + "/contacts/get-contact-by-userid?id=";
 const GET_CONTACT_BY_ORGANIZATION = HOSTNAME.CRM_URL + "/contacts/get-contact-by-organization";
 const SEARCH_CONTACT_IN_ORGANIZATION = HOSTNAME.CRM_URL + "/contacts/search-contact?query=";
+const ADD_TICKET = HOSTNAME.CRM_URL + "/tickets";
+const ADD_DIARY = HOSTNAME.CRM_URL + "/tickets";
 
 // ATD MODULE
 const GET_EMP_ATD = HOSTNAME.ATD_URL + "/attendance/get-employee-attendance?"
@@ -128,5 +130,7 @@ export const crm = {
   ADD_CONTACT,
   GET_CONTACT_BY_USER,
   GET_CONTACT_BY_ORGANIZATION,
-  SEARCH_CONTACT_IN_ORGANIZATION
+  SEARCH_CONTACT_IN_ORGANIZATION,
+  ADD_TICKET,
+  ADD_DIARY
 };
