@@ -1,4 +1,6 @@
 
+const DEVELOPMENT = true;
+
 export const microServiceDevUrls = {
   // US MICROSERVICE
   US_URL: "http://localhost:3000",
@@ -14,6 +16,9 @@ export const microServiceDevUrls = {
 
   // ATD MICROSERVICE
   ATD_URL: "http://localhost:3004",
+
+  // PM MICROSERVICE
+  PM_URL: "http://localhost:3005",
 }
 
 export const microServiceProdUrls = {
@@ -29,10 +34,12 @@ export const microServiceProdUrls = {
   // CRM MICROSERVICE
   CRM_URL: "http://13.234.252.174:3003",
 
-    // ATD MICROSERVICE
+  // ATD MICROSERVICE
   ATD_URL: "http://13.234.252.174:3004",
+
+  // PM MICROSERVICE
+  PM_URL: "http://13.234.252.174:3005",
 }
-const DEVELOPMENT = true;
 
 const HOSTNAME = DEVELOPMENT ? microServiceDevUrls: microServiceProdUrls;
 
@@ -56,13 +63,13 @@ const GET_EMPLOYEE_LIST = HOSTNAME.ORG_URL+"/organizations/get-employee-list";
 const GET_EMP_LIST = HOSTNAME + "/company/"
 
 // STORY MODULE
-const GET_STORY = HOSTNAME + "/story";
+const GET_STORY = HOSTNAME.PM_URL + "/story/get-story-by-workspace?workspace=";
 
 // EPIC MODULE
-const GET_EPIC = HOSTNAME + "/epic/record";
+const GET_EPIC = HOSTNAME.PM_URL + "/epic/get-epic-by-workspace?workspace=";
 
 // TIMELINE MODULE
-const GET_TIMELINE = HOSTNAME + "/timeline";
+const GET_TIMELINE = HOSTNAME.PM_URL + "/timeline";
 
 // WORKSPACE MODULE
 const GET_USER_LIST = HOSTNAME + "/workspace/get-user?workspaceId=";

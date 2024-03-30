@@ -13,6 +13,13 @@ import { user_details } from "@/data";
 export function Timeline() {
   const [taskListData, setTaskListData] = React.useState([]);
 
+  const calculateDuration = (startDateTime, endDateTime) =>  {
+      const differenceMs = endDateTime - startDateTime;
+      const hours = Math.floor(differenceMs / (1000 * 60 * 60)); // 1 hour = 3600000 milliseconds
+      const minutes = Math.floor((differenceMs % (1000 * 60 * 60)) / (1000 * 60)); // 1 minute = 60000 milliseconds
+      return { hours, minutes };
+  }
+
   const fetchData = () => {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
@@ -20,9 +27,9 @@ export function Timeline() {
     const day = currentDate.getDate().toString().padStart(2, '0');
     const formattedDate = `${year}-${month}-${day}`;
       timeline_services
-        .getTaskByWIDnUID(user_details.WORKSPACEID,user_details.USERID,formattedDate,formattedDate)
+        .getTaskByWIDnUID(user_details.WORKSPACEID,'userId',formattedDate,formattedDate)
           .then(response => {
-            setTaskListData(response.data[0].timeline[0].stories)
+            setTaskListData(response.data.timeline[0].documents)
           })
           .catch(error => {
             console.log(error)
@@ -55,7 +62,7 @@ export function Timeline() {
           <table className="w-full min-w-[640px] table-auto">
             <thead>
               <tr>
-                {["Story", "Task","Start Time", "End Time", "Duration",""].map((el) => (
+                {["TimelineId","Story", "Task","Start Time", "End Time", "Duration",""].map((el) => (
                   <th
                     key={el}
                     className="border-b border-blue-gray-50 py-3 px-5 text-left"
@@ -72,21 +79,29 @@ export function Timeline() {
             </thead>
             <tbody>
               {taskListData.map(
-                ({ storyTitle, task,start_time,end_time, duration}, key) => {
+                ({ _id,story, task,startTime,endTime}, key) => {
                   const { taskName } = task;
+                  const { storyTitle } = story;
+                  const storyId = story._id;
+                  const taskId = task._id;
                   const className = `py-3 px-5 ${
                     key === taskListData.length - 1
                       ? ""
                       : "border-b border-blue-gray-50"
                   }`;
 
+                  const startDateTime = new Date(startTime); // Example start date and time
+                  const endDateTime = new Date(endTime);
+                  const duration = calculateDuration(startDateTime, endDateTime)
+                  const hrs = duration.hours
+                  const min = duration.minutes
                   return (
                     <tr key={key}>
                       <td className={className}>
                         <div className="flex items-center gap-4">
                           <div>
                             <Typography className="text-xs font-normal text-blue-gray-500">
-                              {storyTitle}
+                              {_id}
                             </Typography>
                           </div>
                         </div>
@@ -95,24 +110,33 @@ export function Timeline() {
                         <div className="flex items-center gap-4">
                           <div>
                             <Typography className="text-xs font-normal text-blue-gray-500">
-                              {taskName}
+                              {storyTitle}<br></br>{storyId}
+                            </Typography>
+                          </div>
+                        </div>
+                      </td>
+                      <td className={className}>
+                        <div className="flex items-center gap-4">
+                          <div>
+                            <Typography className="text-xs font-normal text-blue-gray-500">
+                              {taskName}<br></br>{taskId}
                             </Typography>
                           </div>
                         </div>
                       </td>
                       <td className={className}>
                         <Typography className="text-xs font-normal text-blue-gray-500">
-                          {start_time}
+                          {startTime}
                         </Typography>
                       </td>
                       <td className={className}>
                         <Typography className="text-xs font-normal text-blue-gray-500">
-                          {end_time}
+                          {endTime}
                         </Typography>
                       </td>
                       <td className={className}>
                         <Typography className="text-xs font-normal text-blue-gray-500">
-                          {duration}
+                          {hrs} Hrs <br></br> {min} Min
                         </Typography>
                       </td>
                     </tr>

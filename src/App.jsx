@@ -1,11 +1,12 @@
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import { Dashboard, Auth, Profile, Logdetails, Story, Timeline, Crm } from "@/layouts";
+import { Dashboard, Auth, Profile, Logdetails, Story, Timeline, Crm, Epic } from "@/layouts";
 
 function App() {
   return (
     <Routes>
       <Route path="/logdetails/*" element={<Logdetails />} />
       <Route path="/story/*" element={<Story />} />
+      <Route path="/epic/*" element={<Epic />} />
       <Route path="/timeline/*" element={<Timeline />} />
       <Route path="/crm/*" element={<Crm />} />
       <Route path="/profile/*" element={<Profile />} />

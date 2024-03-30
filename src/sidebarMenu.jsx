@@ -14,6 +14,7 @@ import { Timeline } from "@/pages/timeline";
 import { MyProfile } from "@/pages/profile";
 import { SignOut } from "@/pages/auth";
 import { Contact, Ticket } from "./pages/crm";
+import { Epic } from "./pages/epic";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -49,7 +50,7 @@ export const sidebarMenu = [
         icon: <HomeIcon {...icon} />,
         name: "epic",
         path: "/epic",
-        element: <Attendance />,
+        element: <Epic />,
       },
     ],
   },

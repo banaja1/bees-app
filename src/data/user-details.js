@@ -1,9 +1,5 @@
- const WORKSPACEID = "65cded5106a91fb47eb75530"
-
- const USERID = "65c08f2842526e9c893a73d6"
-
+ const WORKSPACEID = "6603ececf95c1ad32800864f"
 
 export const user_details = {
   WORKSPACEID,
-  USERID
 };

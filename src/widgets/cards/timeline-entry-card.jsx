@@ -57,31 +57,19 @@ export function TimeLineEntry () {
 
   const handleSubmit = () => {
     const currentTime = getCurrentTime();
-
-    // Validate timestamps
-    console.log(new Date(timestamp1) )
-    console.log(new Date(timestamp2) )
-    console.log(new Date(currentTime) )
     if (new Date(timestamp1) >= new Date(currentTime) || new Date(timestamp2) >= new Date(currentTime)) {
       setError('Timestamps must be less than the current time.');
       return;
     }
 
-    // Your logic for form submission
-    // console.log('Form submitted:', {
-    //   epicValue,
-    //   storyValue,
-    //   taskValue,
-    //   timestamp1,
-    //   timestamp2,
-    // });
     let data = {
-      "stories": storyValue,
-      "tasks": taskValue,
+      "story": storyValue,
+      "task": taskValue,
       "startTime": timestamp1,
       "endTime": timestamp2,
-      "workspace": workspaceData
+      "workspace": user_details.WORKSPACEID
     }
+    console.log(data)
     timeline_services.postTimeline(data)
       .then(response => {
         console.log(response);

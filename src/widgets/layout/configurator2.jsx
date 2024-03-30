@@ -17,11 +17,12 @@ import {
   setOpenConfigurator2,
   setSidenavType,
 } from "@/context";
-import { CreateStory } from "../cards";
+import { CreateStory, CreateEpic } from "../cards";
 import {DialogContent } from '@mui/material';
 
 export function Configurator2() {
   const [open, setOpen] = React.useState(false);
+  const [openEpic, setOpenEpic] = React.useState(false);
   const [controller, dispatch] = useMaterialTailwindController();
   const { openConfigurator2 } =
     controller;
@@ -31,8 +32,17 @@ export function Configurator2() {
     setOpen(!open);
   }
 
+  const createEpic = () => {
+    setOpenConfigurator2(dispatch, false)
+    setOpenEpic(!openEpic);
+  }
+
   const handleOpen = () => {
     setOpen(!open);
+  }
+
+  const handleOpenEpic = () => {
+    setOpenEpic(!openEpic);
   }
 
   return (
@@ -69,7 +79,7 @@ export function Configurator2() {
             </Button>
             <Button
               variant="outlined"
-              onClick={() => setSidenavType(dispatch, "transparent")}
+              onClick={() => createEpic()}
             >
               Create Epic
             </Button>
@@ -77,21 +87,43 @@ export function Configurator2() {
         </div>
       </div>
       <Dialog open={open} handler={handleOpen} maxWidth="sm" fullWidth>
-      <DialogContent dividers style={{ overflowY: 'auto', maxHeight: '600px' }}>
-        <DialogHeader></DialogHeader>
-        <div className="pl-6">
-        </div>
-        <DialogBody>
-          <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
-           <CreateStory/>
-        </CardBody>
-        </DialogBody>
+        <DialogContent dividers style={{ overflowY: 'auto', maxHeight: '600px' }}>
+          <DialogHeader></DialogHeader>
+          <div className="pl-6">
+          </div>
+          <DialogBody>
+            <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
+            <CreateStory/>
+            </CardBody>
+          </DialogBody>
         </DialogContent>
         <DialogFooter>
           <Button
             variant="text"
             color="red"
             onClick={handleOpen}
+            className="mr-1"
+          >
+            <span>Cancel</span>
+          </Button>
+        </DialogFooter>
+      </Dialog> 
+      <Dialog open={openEpic} handler={handleOpenEpic} maxWidth="sm" fullWidth>
+        <DialogContent dividers style={{ overflowY: 'auto', maxHeight: '600px' }}>
+          <DialogHeader></DialogHeader>
+          <div className="pl-6">
+          </div>
+          <DialogBody>
+            <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
+            <CreateEpic/>
+            </CardBody>
+          </DialogBody>
+        </DialogContent>
+        <DialogFooter>
+          <Button
+            variant="text"
+            color="red"
+            onClick={handleOpenEpic}
             className="mr-1"
           >
             <span>Cancel</span>

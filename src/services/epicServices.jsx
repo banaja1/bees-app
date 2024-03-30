@@ -4,7 +4,7 @@ import { epic } from "./apiconfig/rest_apis.js";
 
 const getEpic = (workspaceId) => {
   return axios({
-    url: epic.GET_EPIC+"?workspaceId="+workspaceId,
+    url: epic.GET_EPIC+workspaceId,
     method: "get",
     headers: header
   });

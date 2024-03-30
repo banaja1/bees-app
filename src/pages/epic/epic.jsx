@@ -14,32 +14,18 @@ import {
   DialogBody,
   DialogFooter,
 } from "@material-tailwind/react";
-import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect } from 'react';
-import { story_services } from "@/services/storyServices";
 import React from "react";
-import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { CreateStory, StoryDetailCard } from "@/widgets/cards";
 import {DialogContent } from '@mui/material';
+import { epic_services } from "@/services/epicServices";
 import { user_details } from "@/data";
 
-export function Story() {
-  var page_number = 1
-
-  const [totalPage, setTotalPage] = useState(1)
-  const [requestHistoryData, setRequestHistoryData] = useState([])
-  const [empListData, setEmpListData] = useState([])
-  const [empAtdData, setEmpAtdData] = useState([])
-  const [active, setActive] = React.useState(1);
+export function Epic() {
+  const [epicList, setEpicList] = useState([])
   const [open, setOpen] = React.useState(false);
-  const [queryResponse, setQueryResponse] = React.useState('');
-  const [end_date, setEndDate] = React.useState('');
-  const [start_date, setStartDate] = React.useState('');
-  const [userIdData, setUserIdData] = React.useState('');
-  const [storyListData, setStoryListData] = React.useState([]);
-  const [storyData, setStoryData] = React.useState([]);
 
- 
+
   const handleOpen = (userId) => {
     setOpen(!open);
   }
@@ -48,11 +34,11 @@ export function Story() {
   }
 
   const fetchData = () => {
-      story_services
-        .getStory(user_details.WORKSPACEID)
+      epic_services
+      .getEpic(user_details.WORKSPACEID)
           .then(response => {
-            setStoryListData(response.data)
             console.log(response.data)
+            setEpicList(response.data)
           })
           .catch(error => {
             console.log(error)
@@ -68,7 +54,7 @@ export function Story() {
       <Card>
         <CardHeader variant="gradient" color="blue" className="mb-8 p-6">
           <Typography variant="h6" color="white">
-            Stories
+            Epics
           </Typography>
         </CardHeader>
         
@@ -76,7 +62,7 @@ export function Story() {
           <table className="w-full min-w-[640px] table-auto">
             <thead>
               <tr>
-                {["StoryId", "Story Title" ,"Type", "Requester", "Priority","Due Date", "Status",""].map((el) => (
+                {["EpicID", "Name" ,"State", "Owner", "Start Date","End Date", "Status",""].map((el) => (
                   <th
                     key={el}
                     className="border-b border-blue-gray-50 py-3 px-5 text-left"
@@ -92,11 +78,10 @@ export function Story() {
               </tr>
             </thead>
             <tbody>
-              {storyListData.map(
-                ({ _id, title, type,requester, priority, due_date, status,owner}, key) => {
-                  const { name } = requester;
+              {epicList.map(
+                ({ _id, name, state,owner, start_date, end_date, status,}, key) => {
                   const className = `py-3 px-5 ${
-                    key === storyListData.length - 1
+                    key === epicList.length - 1
                       ? ""
                       : "border-b border-blue-gray-50"
                   }`;
@@ -114,17 +99,19 @@ export function Story() {
                       </td>
                       <td className={className}>
                         <Typography className="text-xs font-normal text-blue-gray-500">
-                          {title}
-                        </Typography>
-                      </td>
-                      <td className={className}>
-                        <Typography className="text-xs font-normal text-blue-gray-500">
-                          {type}
-                        </Typography>
-                      </td>
-                      <td className={className}>
-                        <Typography className="text-xs font-normal text-blue-gray-500">
                           {name}
+                        </Typography>
+                      </td>
+                      <td className={className}>
+                        <Typography className="text-xs font-normal text-blue-gray-500">
+                          {state}
+                        </Typography>
+                      </td>
+                      <td className={className}>
+                        <Typography className="text-xs font-normal text-blue-gray-500">
+                          {owner.map((user, index) => (
+                            <li key={index}>{user.name}</li>
+                          ))}
                         </Typography>
                       </td>
                       {/* <td className={className}>
@@ -134,12 +121,12 @@ export function Story() {
                       </td> */}
                       <td className={className}>
                         <Typography className="text-xs font-normal text-blue-gray-500">
-                          {priority}
+                          {start_date}
                         </Typography>
                       </td>
                       <td className={className}>
                         <Typography className="text-xs font-normal text-blue-gray-500">
-                          {due_date}
+                          {end_date}
                         </Typography>
                       </td>
                       <td className={className}>
@@ -187,4 +174,4 @@ export function Story() {
   );
 }
 
-export default Story;
+export default Epic;

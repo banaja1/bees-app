@@ -3,12 +3,19 @@ import { ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Typograph
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 export function TableTest ({date, total_hr, total_min, stories}) {
+  const calculateHoursDuration = (startDateTime, endDateTime) =>  {
+    const differenceMs = endDateTime - startDateTime;
+    const hours = Math.floor(differenceMs / (1000 * 60 * 60)); // 1 hour = 3600000 milliseconds
+    const minutes = Math.floor((differenceMs % (1000 * 60 * 60)) / (1000 * 60)); // 1 minute = 60000 milliseconds
+    return hours;
+  }
 
-  const rows = [
-    { name: 'John Doe', age: 25, city: 'New York' },
-    { name: 'Jane Smith', age: 30, city: 'Los Angeles' },
-    // Add more rows as needed
-  ];
+  const calculateMinutesDuration = (startDateTime, endDateTime) =>  {
+    const differenceMs = endDateTime - startDateTime;
+    const hours = Math.floor(differenceMs / (1000 * 60 * 60)); // 1 hour = 3600000 milliseconds
+    const minutes = Math.floor((differenceMs % (1000 * 60 * 60)) / (1000 * 60)); // 1 minute = 60000 milliseconds
+    return minutes;
+  }
   return (
     
     <div>
@@ -31,6 +38,7 @@ export function TableTest ({date, total_hr, total_min, stories}) {
             <Table>
               <TableHead>
                 <TableRow>
+                  <TableCell>Timeline ID</TableCell>
                   <TableCell>Story Title</TableCell>
                   <TableCell>Task Name</TableCell>
                   <TableCell>Etart Time</TableCell>
@@ -40,12 +48,21 @@ export function TableTest ({date, total_hr, total_min, stories}) {
               </TableHead>
               <TableBody>
                 {stories.map((row, index) => (
+                  // const startDateTime = new Date(startTime); // Example start date and time
+                  // const endDateTime = new Date(endTime);
+                  // const duration = calculateDuration(startDateTime, endDateTime)
+                  // const hrs = duration.hours
+                  // const min = duration.minutes
                   <TableRow key={index}>
-                    <TableCell>{row.storyTitle}</TableCell>
-                    <TableCell>{row.task.taskName}</TableCell>
-                    <TableCell>{row.start_time}</TableCell>
-                    <TableCell>{row.end_time}</TableCell>
-                    <TableCell>{row.duration}</TableCell>
+                    <TableCell>{row._id}</TableCell>
+                    <TableCell>{row.story.storyTitle}<br></br>{row.story._id}</TableCell>
+                    <TableCell>{row.task.taskName}<br></br>{row.task._id}</TableCell>
+                    <TableCell>{row.startTime}</TableCell>
+                    <TableCell>{row.endTime}</TableCell>
+                    <TableCell>
+                    {calculateHoursDuration(new Date(row.startTime), new Date(row.endTime))} Hr<br></br>
+                    {calculateMinutesDuration(new Date(row.startTime), new Date(row.endTime))} Min
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

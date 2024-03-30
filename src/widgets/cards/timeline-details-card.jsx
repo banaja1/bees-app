@@ -6,6 +6,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { TableTest } from "@/widgets/cards";
+import { organization_services } from '@/services/organizationServices';
 
 export function TimeLineDetails () {
   const [empValue, setEmpValue] = useState('');
@@ -22,10 +23,10 @@ export function TimeLineDetails () {
   },[])
 
   const fetchData = () => {
-    workspace_services
-    .getUserList(user_details.WORKSPACEID)
+    organization_services.getEmployeeList()
         .then(response => {
-          setEmpList(response.data.user_list)
+          // console.log(response.data.employees)
+          setEmpList(response.data.employees)
         })
         .catch(error => {
           console.log(error)
@@ -56,10 +57,10 @@ export function TimeLineDetails () {
     }
 
     timeline_services
-        .getTaskByWIDnUID(user_details.WORKSPACEID,user_details.USERID,timestamp1,timestamp2)
+        .getTaskByWIDnUID(user_details.WORKSPACEID,"userId",timestamp1,timestamp2)
           .then(response => {
-            console.log(response.data[0].timeline)
-            setTaskList(response.data[0].timeline)
+            console.log(response.data)
+            setTaskList(response.data.timeline)
           })
           .catch(error => {
             console.log(error)
@@ -71,6 +72,13 @@ export function TimeLineDetails () {
 
   const onEmpChange = (empValue) => {
     setEmpValue(empValue.target.value)
+  }
+
+  const calculateDuration = (startDateTime, endDateTime) =>  {
+    const differenceMs = endDateTime - startDateTime;
+    const hours = Math.floor(differenceMs / (1000 * 60 * 60)); // 1 hour = 3600000 milliseconds
+    const minutes = Math.floor((differenceMs % (1000 * 60 * 60)) / (1000 * 60)); // 1 minute = 60000 milliseconds
+    return { hours, minutes };
   }
 
   return (
@@ -85,8 +93,8 @@ export function TimeLineDetails () {
           >
           <option value="">Select User</option>
             {empList.map((emp) => (
-          <option key={emp.userId} value={emp.userId}>
-            {emp.fullName}
+          <option key={emp._id} value={emp._id}>
+            {emp.name}
           </option>
         ))}
           </select>
@@ -127,7 +135,18 @@ export function TimeLineDetails () {
       </label>
       <div className='w-full'>
         {taskList.map(
-          ({ date, total_hr,total_min,stories}, key) => {
+          ({ _id, documents}, key) => {
+            let total_hr = 0
+            let total_min = 0
+            documents.map(
+              ({endTime,startTime}, index) => {
+                let startDateTime = new Date(startTime); // Example start date and time
+                let endDateTime = new Date(endTime);
+                let duration = calculateDuration(startDateTime, endDateTime)
+                total_hr = total_hr + duration.hours
+                total_min = total_min + duration.minutes
+              }
+            )
             const className = `py-3 px-5 ${
               key === taskList.length - 1
                 ? ""
@@ -135,7 +154,7 @@ export function TimeLineDetails () {
             }`;
 
             return (
-              <TableTest date={date} total_hr={total_hr} total_min={total_min} stories={stories}/>
+              <TableTest date={_id} total_hr={total_hr} total_min={total_min} stories={documents}/>
             );
           }
         )}
