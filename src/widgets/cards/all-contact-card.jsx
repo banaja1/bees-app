@@ -370,6 +370,7 @@ export function AllContact() {
             <p>Ticket Name: {selectedTicket.ticketName}</p>
             <p>Status: {selectedTicket.status}</p>
             <p>Diary Entries:</p>
+            <div className="overflow-y-scroll max-h-96">
             <ul>
               {diaryEntries.map((entry, index) => (
                 <li key={index}>
@@ -389,6 +390,7 @@ export function AllContact() {
                 </li>
               ))}
             </ul>
+            </div>
             {/* <button onClick={() => setSelectedTicket(null)}>Close</button> */}
             <br />
             <button
@@ -404,7 +406,6 @@ export function AllContact() {
 };
 
 export default AllContact;
-
 
 
 
