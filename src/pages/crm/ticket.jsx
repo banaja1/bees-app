@@ -6,7 +6,7 @@ import {
 } from "@material-tailwind/react";
 import { useState, useEffect } from 'react';
 import React from "react";
-import { TicketEntry, AllContact, TableTest, DiaryEntry } from "@/widgets/cards";
+import { TicketEntry, AllTicket, TableTest, DiaryEntry } from "@/widgets/cards";
 
 export function Ticket() {
 
@@ -47,7 +47,7 @@ export function Ticket() {
           </Typography>
         </CardHeader>
         <CardBody>
-        <AllContact/>
+        <AllTicket/>
         </CardBody>
       </Card>
     </div>

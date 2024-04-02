@@ -6,7 +6,8 @@ import {
 } from "@material-tailwind/react";
 import { useState, useEffect } from 'react';
 import React from "react";
-import { ContactEntry, AllContact, TableTest } from "@/widgets/cards";
+import { ContactEntry, AllContacts, TableTest } from "@/widgets/cards";
+// import { ContactEntry } from "@/widgets/cards";
 
 export function Contact() {
 
@@ -37,7 +38,7 @@ export function Contact() {
           </Typography>
         </CardHeader>
         <CardBody>
-        <AllContact/>
+        <AllContacts/>
         </CardBody>
       </Card>
     </div>

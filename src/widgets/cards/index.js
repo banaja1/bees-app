@@ -10,6 +10,7 @@ export * from "@/widgets/cards/table-test";
 export * from "@/widgets/cards/create-story-card";
 export * from "@/widgets/cards/create-epic-card";
 export * from "@/widgets/cards/all-contact-card";
+export * from "@/widgets/cards/all-ticket-card";
 export * from "@/widgets/cards/add-task";
 export * from "@/widgets/cards/search-card";
 export * from "@/widgets/cards/diary-entry-card";
