@@ -10,6 +10,15 @@ const getUserList = (workspaceId) => {
   });
 };
 
+const getWorkspaceList = () => {
+  return axios({
+    url: workspace.GET_WORKSPACE_LIST,
+    method: "get",
+    headers: header
+  });
+};
+
 export const workspace_services = {
-  getUserList
+  getUserList,
+  getWorkspaceList
 };

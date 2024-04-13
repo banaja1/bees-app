@@ -75,6 +75,8 @@ const GET_TIMELINE = HOSTNAME.PM_URL + "/timeline";
 // WORKSPACE MODULE
 const GET_USER_LIST = HOSTNAME + "/workspace/get-user?workspaceId=";
 
+const GET_WORKSPACE_LIST = HOSTNAME + "/workspace";
+
 // CRM MODULE
 const ADD_CONTACT = HOSTNAME.CRM_URL + "/contacts";
 const GET_CONTACT_BY_USER = HOSTNAME.CRM_URL + "/contacts/get-contact-by-userid?id=";
@@ -125,7 +127,8 @@ export const timeline = {
 };
 
 export const workspace = {
-  GET_USER_LIST
+  GET_USER_LIST,
+  GET_WORKSPACE_LIST
 };
 
 export const crm = {
