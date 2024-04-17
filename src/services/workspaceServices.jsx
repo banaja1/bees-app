@@ -18,7 +18,16 @@ const getWorkspaceList = () => {
   });
 };
 
+const getWorkspaceListByUser = (ownerId) => {
+  return axios({
+    url: workspace.GET_WORKSPACE_LIST_BY_USER+ownerId,
+    method: "get",
+    headers: header
+  });
+};
+
 export const workspace_services = {
   getUserList,
-  getWorkspaceList
+  getWorkspaceList,
+  getWorkspaceListByUser
 };

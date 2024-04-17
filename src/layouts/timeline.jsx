@@ -25,6 +25,7 @@ export function Timeline() {
         }
       />
       <div className="p-4 xl:ml-80">
+      {/* <div className="flex-grow p-4 xl:ml-80 overflow-y-auto"> */}
         <DashboardNavbar />
         <Configurator />
         <Configurator2 />

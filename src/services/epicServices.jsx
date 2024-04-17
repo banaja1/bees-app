@@ -10,6 +10,17 @@ const getEpic = (workspaceId) => {
   });
 };
 
+const postEpic = (data) => {
+  console.log(data)
+  return axios({
+    url: epic.POST_EPIC,
+    method: "post",
+    headers: header, 
+    data: data
+  });
+};
+
 export const epic_services = {
   getEpic,
+  postEpic
 };

@@ -47,6 +47,7 @@ const HOSTNAME = DEVELOPMENT ? microServiceDevUrls: microServiceProdUrls;
 // AUTH MODULE
 const LOGIN_URL = HOSTNAME + "/auth/login";
 const SIGNUP = HOSTNAME + "/signup_login";
+const USER_DETAILS = HOSTNAME.US_URL + "/users/get-my-profile";
 
 // TOKEN ISSUING MODEL
 const ISSUE_TOEKN = HOSTNAME.TIS_URL+"/jwttoken/login"
@@ -69,13 +70,21 @@ const GET_STORY = HOSTNAME.PM_URL + "/story/get-story-by-workspace?workspace=";
 // EPIC MODULE
 const GET_EPIC = HOSTNAME.PM_URL + "/epic/get-epic-by-workspace?workspace=";
 
+const POST_EPIC = HOSTNAME.PM_URL + "/epic";
+
 // TIMELINE MODULE
 const GET_TIMELINE = HOSTNAME.PM_URL + "/timeline";
+
+const GET_TEAM = HOSTNAME.PM_URL + "/team/get-team";
+
+const CREATE_STORY = HOSTNAME.PM_URL + "/story";
 
 // WORKSPACE MODULE
 const GET_USER_LIST = HOSTNAME + "/workspace/get-user?workspaceId=";
 
-const GET_WORKSPACE_LIST = HOSTNAME + "/workspace";
+const GET_WORKSPACE_LIST_BY_USER = HOSTNAME.PM_URL + "/workspace/get-workspace?userId=";
+
+const GET_WORKSPACE_LIST = HOSTNAME.PM_URL + "/workspace";
 
 // CRM MODULE
 const ADD_CONTACT = HOSTNAME.CRM_URL + "/contacts";
@@ -91,7 +100,8 @@ const GET_EMP_ATD = HOSTNAME.ATD_URL + "/attendance/get-employee-attendance?"
 
 export const access = {
   LOGIN_URL,
-  SIGNUP
+  SIGNUP,
+  USER_DETAILS
 };
 
 export const token = {
@@ -119,16 +129,26 @@ export const story = {
 };
 
 export const epic = {
-  GET_EPIC
+  GET_EPIC,
+  POST_EPIC
 };
 
 export const timeline = {
   GET_TIMELINE
 };
 
+export const team = {
+  GET_TEAM
+};
+
+export const createstory = {
+  CREATE_STORY
+};
+
 export const workspace = {
   GET_USER_LIST,
-  GET_WORKSPACE_LIST
+  GET_WORKSPACE_LIST,
+  GET_WORKSPACE_LIST_BY_USER
 };
 
 export const crm = {
