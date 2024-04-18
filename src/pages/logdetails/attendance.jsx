@@ -3,22 +3,15 @@ import {
   CardHeader,
   CardBody,
   Typography,
-  Avatar,
-  Chip,
-  Tooltip,
-  Progress,
   Button,
-  IconButton,
   Dialog,
   DialogHeader,
   DialogBody,
   DialogFooter,
 } from "@material-tailwind/react";
-import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect } from 'react';
 import { log_services } from "@/services/logServices";
 import React from "react";
-import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 import {DialogContent } from '@mui/material';
 import { organization_services } from "@/services/organizationServices";
 

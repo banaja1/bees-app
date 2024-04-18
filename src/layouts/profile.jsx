@@ -1,14 +1,15 @@
 import { Routes, Route } from "react-router-dom";
-import { Cog6ToothIcon } from "@heroicons/react/24/solid";
+import { Cog6ToothIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { IconButton } from "@material-tailwind/react";
 import {
   Sidenav,
   DashboardNavbar,
   Configurator,
+  Configurator2,
   Footer,
 } from "@/widgets/layout";
 import sidebarMenu from "@/sidebarMenu";
-import { useMaterialTailwindController, setOpenConfigurator } from "@/context";
+import { useMaterialTailwindController, setOpenConfigurator, setOpenConfigurator2 } from "@/context";
 
 export function Profile() {
   const [controller, dispatch] = useMaterialTailwindController();
@@ -26,6 +27,7 @@ export function Profile() {
       {/* <div className="flex-grow p-4 xl:ml-80 overflow-y-auto"> */}
         <DashboardNavbar />
         <Configurator />
+        <Configurator2 />
         <IconButton
           size="lg"
           color="white"
@@ -34,6 +36,15 @@ export function Profile() {
           onClick={() => setOpenConfigurator(dispatch, true)}
         >
           <Cog6ToothIcon className="h-5 w-5" />
+        </IconButton>
+        <IconButton
+          size="lg"
+          color="blue"
+          className="fixed bottom-8 right-20 z-40 rounded-full shadow-blue-gray-900/10"
+          ripple={false}
+          onClick={() => setOpenConfigurator2(dispatch, true)}
+        >
+          <PlusIcon className="h-5 w-5" />
         </IconButton>
         <Routes>
           {sidebarMenu.map(

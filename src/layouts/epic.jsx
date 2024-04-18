@@ -5,10 +5,11 @@ import {
   Sidenav,
   DashboardNavbar,
   Configurator,
+  Configurator2,
   Footer,
 } from "@/widgets/layout";
 import sidebarMenu from "@/sidebarMenu";
-import { useMaterialTailwindController, setOpenConfigurator } from "@/context";
+import { useMaterialTailwindController, setOpenConfigurator, setOpenConfigurator2 } from "@/context";
 
 export function Epic() {
   const [controller, dispatch] = useMaterialTailwindController();
@@ -26,6 +27,7 @@ export function Epic() {
       {/* <div className="flex-grow p-4 xl:ml-80 overflow-y-auto"> */}
         <DashboardNavbar />
         <Configurator />
+        <Configurator2 />
         <IconButton
           size="lg"
           color="white"
@@ -40,7 +42,7 @@ export function Epic() {
           color="blue"
           className="fixed bottom-8 right-20 z-40 rounded-full shadow-blue-gray-900/10"
           ripple={false}
-          onClick={() => setOpenConfigurator(dispatch, true)}
+          onClick={() => setOpenConfigurator2(dispatch, true)}
         >
           <PlusIcon className="h-5 w-5" />
         </IconButton>

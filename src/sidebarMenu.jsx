@@ -330,7 +330,6 @@ export const sidebarMenu = [
     ],
   },
 ];
-
 export default sidebarMenu;
 
 
