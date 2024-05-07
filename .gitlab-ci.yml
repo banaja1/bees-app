@@ -14,35 +14,52 @@
 #   - npm install
 #   - npm run build
 
+# # Define stages for the pipeline
+# stages:
+#   - build
+#   - deploy
+
+# # Job to build the React project
+# build:
+#   stage: build
+#   image: node:latest
+#   cache:
+#     paths:
+#       - node_modules/
+#   script:
+#     - npm install --force
+#     - npm run build
+#   artifacts:
+#     paths:
+#       - build
+
+# # Job to deploy the built project to GitLab Pages
+# deploy:
+#   stage: deploy
+#   script:
+#     - mkdir .build
+#     - cp -r build/* .build
+#     - mv .build build
+#   artifacts:
+#     paths:
+#       - build
+#   only:
+#   - banaja
+
 # Define stages for the pipeline
 stages:
-  - build
   - deploy
 
-# Job to build the React project
-build:
-  stage: build
-  image: node:latest
-  cache:
-    paths:
-      - node_modules/
-  script:
-    - npm install --force
-    - npm run build
-  artifacts:
-    paths:
-      - build
-
-# Job to deploy the built project to GitLab Pages
+# Job to deploy the built project to GitHub Pages
 deploy:
   stage: deploy
   script:
-    - mkdir .build
-    - cp -r build/* .build
-    - mv .build build
+    - mkdir public
+    - cp -r build/* public/
   artifacts:
     paths:
-      - build
+      - public
   only:
-  - banaja
-  
+    - test
+
+
