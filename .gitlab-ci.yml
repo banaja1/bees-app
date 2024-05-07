@@ -45,3 +45,4 @@ deploy:
       - public
   only:
   - banaja
+  
