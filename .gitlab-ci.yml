@@ -48,23 +48,16 @@
 
 image: node:latest
 
-stages:
-  - deploy
 
-before_script:
-  - npm install
-
-deploy:
+pages:
   stage: deploy
   script:
+    - npm install --force
     - npm run build
-    - mkdir public
-    - cp -r build/* public/
+    - echo -e "<script>(function () {document.write('<base href=\"' + document.location.pathname + '\" />');}());</script>\n$(cat build/index.html)" > build/index.html
+    - cp -r build/* public
   artifacts:
     paths:
       - public
   only:
     - banaja
-
-
-
