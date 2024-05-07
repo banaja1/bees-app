@@ -56,6 +56,7 @@ deploy:
   script:
     - rm -rf public
     - mkdir public
+    - ls -la  # List contents of the current directory for debugging
     - ls -la build  # List contents of the build directory for debugging
     - cp -r build/* public/
   artifacts:
