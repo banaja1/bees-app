@@ -1,16 +1,41 @@
+# stages:
+#   - test
+#   - build
+# test project:
+#   stage: test
+#   image: node:15
+#   script:
+#   - npm install
+#   - npm run build
+# build project:
+#   stage: build
+#   image: node:15
+#   script:
+#   - npm install
+#   - npm run build
+
 stages:
-  - test
   - build
-test project:
-  stage: test
-  image: node:15
-  script:
-  - npm install
-  - npm run build
-build project:
+  - deploy
+
+build:
   stage: build
-  image: node:15
+  image: node:latest
   script:
-  - npm install
-  # - npm test
-  - npm run build
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - build
+
+deploy:
+  stage: deploy
+  script:
+    - mkdir .public
+    - cp -r build/* .public
+    - mv .public public
+  artifacts:
+    paths:
+      - public
+  only:
+  - banaja
