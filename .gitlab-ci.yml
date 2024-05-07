@@ -37,12 +37,12 @@ build:
 deploy:
   stage: deploy
   script:
-    - mkdir .public
-    - cp -r build/* .public
-    - mv .public public
+    - mkdir .build
+    - cp -r build/* .build
+    - mv .build build
   artifacts:
     paths:
-      - public
+      - build
   only:
   - banaja
   
