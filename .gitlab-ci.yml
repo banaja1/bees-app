@@ -46,23 +46,25 @@
 #   only:
 #   - banaja
 
-# Define stages for the pipeline
+image: node:latest
+
 stages:
   - deploy
 
-# Job to deploy the built project to GitHub Pages
+before_script:
+  - npm install
+
 deploy:
   stage: deploy
   script:
-    - rm -rf public
+    - npm run build
     - mkdir public
-    - ls -la  # List contents of the current directory for debugging
-    - ls -la build  # List contents of the build directory for debugging
     - cp -r build/* public/
   artifacts:
     paths:
       - public
   only:
     - banaja
+
 
 
