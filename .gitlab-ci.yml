@@ -60,6 +60,6 @@ deploy:
     paths:
       - public
   only:
-    - test
+    - banaja
 
 
